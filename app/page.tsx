@@ -9,7 +9,7 @@ import {
   Hotel, Package, ShoppingBag, LayoutDashboard,
   Star, MapPin, ArrowRight, CheckCircle2, Shield,
   Clock, Sparkles, Coins, ChevronRight, TrendingUp,
-  Navigation, Users, Wrench, Settings
+  Navigation, Users, Settings
 } from 'lucide-react'
 
 const ROLE_FEATURES: Record<string, { icon: any; label: string; desc: string; href: string; color: string; bg: string }[]> = {
@@ -275,39 +275,61 @@ export default function HomePage() {
         </svg>
       </section>
 
-      {/* Who is it for */}
+      {/* How it works */}
       <section style={{ maxWidth: 1200, margin: '0 auto', padding: '80px 32px' }}>
         <div style={{ textAlign: 'center', marginBottom: 56 }}>
-          <p style={{ fontSize: 12, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.12em', color: '#c9973a', fontFamily: 'var(--font-dm-sans)', marginBottom: 12 }}>Built for everyone</p>
-          <h2 style={{ fontFamily: 'var(--font-playfair)', fontSize: 'clamp(1.8rem,3vw,2.6rem)', fontWeight: 700, marginBottom: 16 }}>One platform, multiple roles</h2>
+          <p style={{ fontSize: 12, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.12em', color: '#c9973a', fontFamily: "'DM Sans',sans-serif", marginBottom: 12 }}>Simple process</p>
+          <h2 style={{ fontFamily: "'Playfair Display',serif", fontSize: 'clamp(1.8rem,3vw,2.6rem)', fontWeight: 700, marginBottom: 16 }}>Up and running in minutes</h2>
           <div style={{ width: 60, height: 3, background: 'linear-gradient(90deg,#c9973a,#f0c96a)', borderRadius: 2, margin: '0 auto 20px' }} />
-          <p style={{ color: '#6b6560', maxWidth: 500, margin: '0 auto', lineHeight: 1.8, fontFamily: 'var(--font-dm-sans)' }}>
-            Sign up and choose your role — your dashboard and features are tailored automatically.
+          <p style={{ color: '#6b6560', maxWidth: 480, margin: '0 auto', lineHeight: 1.8, fontFamily: "'DM Sans',sans-serif" }}>
+            Create an account, verify your identity, and access everything MyTownship has to offer.
           </p>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(200px,1fr))', gap: 20 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(220px,1fr))', gap: 20 }}>
           {[
-            { icon: Users,      role: 'Guest / User',       desc: 'Book hotels, ship packages, shop marketplace',          color: '#0f2044', bg: '#e8eaf6', href: '/auth/register' },
-            { icon: Hotel,      role: 'Hotel Manager',      desc: 'List your hotel, manage rooms and bookings',             color: '#0f2044', bg: '#e8eaf6', href: '/auth/register' },
-            { icon: Users,      role: 'Hotel Reception',    desc: 'Toggle room status, check guests in and out',            color: '#3b82f6', bg: '#eff6ff', href: '/auth/register' },
-            { icon: Navigation, role: 'Dispatch Rider',     desc: 'Set availability, accept and deliver shipments',         color: '#c9973a', bg: '#fdf6e8', href: '/auth/register' },
-            { icon: ShoppingBag,role: 'Merchant',           desc: 'List products, manage inventory and receive orders',     color: '#a855f7', bg: '#fdf4ff', href: '/auth/register' },
-            { icon: Settings,   role: 'Admin',              desc: 'Approve all accounts and oversee the platform',         color: '#dc2626', bg: '#fef2f2', href: '/auth/register' },
-          ].map(({ icon: Icon, role, desc, color, bg, href }) => (
-            <Link key={role} href={href} style={{ textDecoration: 'none' }}>
-              <div style={{ background: '#ffffff', borderRadius: 18, padding: 24, border: '1px solid #e2ddd8', cursor: 'pointer', transition: 'transform 0.2s, box-shadow 0.2s' }}
+            {
+              step: '01',
+              title: 'Create account',
+              desc: 'Sign up with your name, email and country. Takes under a minute.',
+              color: '#0f2044', bg: '#e8eaf6',
+              href: '/auth/register',
+            },
+            {
+              step: '02',
+              title: 'Verify identity',
+              desc: 'Nigerians verify instantly with NIN + selfie. International users submit a quick KYC.',
+              color: '#c9973a', bg: '#fdf6e8',
+              href: '/auth/register',
+            },
+            {
+              step: '03',
+              title: 'Access dashboard',
+              desc: 'Book hotels, ship packages and shop the marketplace straight away.',
+              color: '#a855f7', bg: '#fdf4ff',
+              href: '/auth/register',
+            },
+            {
+              step: '04',
+              title: 'Apply for a role',
+              desc: 'Want to list a hotel, sell products or ride for deliveries? Apply from your dashboard.',
+              color: '#22c55e', bg: '#f0fdf4',
+              href: '/auth/register',
+            },
+          ].map(({ step, title, desc, color, bg, href }) => (
+            <Link key={step} href={href} style={{ textDecoration: 'none' }}>
+              <div style={{ background: '#ffffff', borderRadius: 18, padding: 24, border: '1px solid #e2ddd8', cursor: 'pointer', transition: 'transform 0.2s, box-shadow 0.2s', height: '100%' }}
                 onMouseEnter={e => { (e.currentTarget as HTMLElement).style.transform = 'translateY(-3px)'; (e.currentTarget as HTMLElement).style.boxShadow = '0 12px 40px rgba(15,32,68,0.1)' }}
                 onMouseLeave={e => { (e.currentTarget as HTMLElement).style.transform = 'translateY(0)'; (e.currentTarget as HTMLElement).style.boxShadow = 'none' }}
               >
-                <div style={{ width: 44, height: 44, borderRadius: 12, background: bg, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 14 }}>
-                  <Icon size={20} style={{ color }} />
+                <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16 }}>
+                  <span style={{ fontFamily: "'Playfair Display',serif", fontSize: '2rem', fontWeight: 800, color: '#e2ddd8', lineHeight: 1 }}>{step}</span>
+                  <div style={{ width: 36, height: 36, borderRadius: 10, background: bg, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <div style={{ width: 10, height: 10, borderRadius: '50%', background: color }} />
+                  </div>
                 </div>
-                <p style={{ fontFamily: 'var(--font-playfair)', fontWeight: 700, fontSize: '1rem', marginBottom: 8, color: '#0d1117' }}>{role}</p>
-                <p style={{ fontSize: 13, color: '#6b6560', fontFamily: 'var(--font-dm-sans)', lineHeight: 1.6, marginBottom: 14 }}>{desc}</p>
-                <div style={{ fontSize: 12, color, fontWeight: 600, fontFamily: 'var(--font-dm-sans)', display: 'flex', alignItems: 'center', gap: 4 }}>
-                  Register as this role <ArrowRight size={12} />
-                </div>
+                <p style={{ fontFamily: "'Playfair Display',serif", fontWeight: 700, fontSize: '1rem', marginBottom: 8, color: '#0d1117' }}>{title}</p>
+                <p style={{ fontSize: 13, color: '#6b6560', fontFamily: "'DM Sans',sans-serif", lineHeight: 1.7 }}>{desc}</p>
               </div>
             </Link>
           ))}
@@ -405,7 +427,7 @@ export default function HomePage() {
           <p style={{ fontSize: 12, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.12em', color: '#c9973a', fontFamily: 'var(--font-dm-sans)', marginBottom: 16 }}>Join Today</p>
           <h2 style={{ fontFamily: 'var(--font-playfair)', fontSize: 'clamp(2rem,4vw,3rem)', fontWeight: 700, color: '#ffffff', marginBottom: 20, lineHeight: 1.2 }}>Your Destination Awaits</h2>
           <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: '1rem', marginBottom: 40, lineHeight: 1.8, fontFamily: 'var(--font-dm-sans)' }}>
-            Join as a guest, hotel manager, merchant, or rider. Your role shapes your entire experience.
+            Create your free account, verify your identity, and access hotels, logistics and the marketplace — all in one place.
           </p>
           <div style={{ display: 'flex', justifyContent: 'center', gap: 14, flexWrap: 'wrap' }}>
             <Link href="/auth/register" style={{ textDecoration: 'none' }}>
